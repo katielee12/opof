@@ -20,8 +20,8 @@ class Generator(Generic[Problem], nn.Module, metaclass=ABCMeta):
         """
         Transforms a batch of problem instances :math:`c \\in \\mathcal{C}` into a batch
         of distributions over :math:`\\mathcal{X}`, and returns a batch of samples,
-        an optional batch the entropies, and extra objects which are passed to the planner.
+        entropies, and extra objects which are passed to the planner.
 
         :param problem: Batch of problem instances
-        :return: Batch of samples, optional batch of entropies, and list of extra objects.
+        :return: Batch of samples, entropies, and extra objects.
         """

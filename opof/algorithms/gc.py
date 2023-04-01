@@ -324,7 +324,8 @@ class GC(Algorithm):
                     problem.append(request_queue.get())
                 if len(problem) > 0:
                     generator.eval()
-                    (parameters, _, extras) = generator(problem)
+                    with torch.no_grad():
+                        (parameters, _, extras) = generator(problem)
                     # Submit jobs.
                     for (i, _problem) in enumerate(problem):
                         _parameters = [p[i].detach().cpu().numpy() for p in parameters]
