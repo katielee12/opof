@@ -79,7 +79,7 @@ class FCResNetGenerator(Generic[Problem], Generator[Problem]):
         self.num_blocks = num_blocks
 
         self.problem_embedding = domain.create_problem_embedding()
-        self.fc_pre = nn.Sequential(nn.LazyLinear(latent_size), nn.ReLU())
+        self.fc_pre = nn.Sequential(nn.LazyLinear(latent_size), nn.GELU())
         self.fc = nn.ModuleList(
             [
                 nn.Linear(latent_size, latent_size)
@@ -164,7 +164,7 @@ class FCResNetCritic(nn.Module, Generic[Problem]):
         self.parameters_embedding = nn.ModuleList(
             [pspace.create_embedding() for pspace in self.parameter_spaces]
         )
-        self.fc_pre = nn.Sequential(nn.LazyLinear(latent_size), nn.ReLU())
+        self.fc_pre = nn.Sequential(nn.LazyLinear(latent_size), nn.GELU())
         self.fc = nn.ModuleList(
             [
                 nn.Linear(latent_size, latent_size)
